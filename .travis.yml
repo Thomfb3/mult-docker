@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t thomasbalunis/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t thomfb3/react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run -e CI=true thomasbalunis/react-test npm test
+  - docker run -e CI=true thomfb3/react-test npm test
 
 after_success:
-  - docker build -t thomasbalunis/multi-client ./client
-  - docker build -t thomasbalunis/multi-nginx ./nginx
-  - docker build -t thomasbalunis/multi-server ./server
-  - docker build -t thomasbalunis/multi-worker ./worker
+  - docker build -t thomfb3/multi-client ./client
+  - docker build -t thomfb3/multi-nginx ./nginx
+  - docker build -t thomfb3/multi-server ./server
+  - docker build -t thomfb3/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to Docker hub
-  - docker push thomasbalunis/multi-client
-  - docker push thomasbalunis/multi-ngnix
-  - docker push thomasbalunis/multi-server
-  - docker push thomasbalunis/multi-worker
+  - docker push thomfb3/multi-client
+  - docker push thomfb3/multi-ngnix
+  - docker push thomfb3/multi-server
+  - docker push thomfb3/multi-worker
