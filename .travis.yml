@@ -20,3 +20,17 @@ after_success:
   - docker push thomfb3/multi-nginx
   - docker push thomfb3/multi-server
   - docker push thomfb3/multi-worker
+
+language: generic
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "multi-docker"
+  env: "Multidocker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-262362082744"
+  bucket_path: "multi-docker"
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
